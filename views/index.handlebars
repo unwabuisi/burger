@@ -1,18 +1,30 @@
 <div class="container">
     <h1>Burger List</h1>
+
     <div class="row">
 
         <div class="burger-display col-sm">
-            you
+            {{#each burgers}}
+                {{#unless this.devoured}}
+                    <li>{{this.burger_name}}</li>
+                {{/unless}}
+            {{/each}}
         </div>
 
         <div class="burger-display col-sm">
-            me
+            <ul>
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li>{{this.burger_name}}</li>
+                    {{/if}}
+                {{/each}}
+            </ul>
         </div>
     </div>
 
+
     <div class="row">
-        <div class="form-group col-lg">
+        <div class="form-group col-lg" id="burgerAdd">
             <label for="burgerName">Enter a burger you want to eat and click "Submit"</label><br>
             <input type="text" name="burgerName" value=""><br>
             <button type="submit" name="button">Submit</button>
@@ -21,7 +33,3 @@
 </div>
 
 
-
-<script type="text/javascript">
-    
-</script>

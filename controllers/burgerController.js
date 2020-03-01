@@ -3,10 +3,17 @@ var express = require("express");
 var router = express.Router();
 
 // Import the model (burger.js) to use its database functions
-// var burger = require("../models/burger.js");
+var burger = require("../models/burgers.js");
 
 router.get("/", function(req,res){
-    res.render("index");
+    burger.all(function(data){
+        var hbsObject = {
+            burgers: data
+        };
+        console.log(hbsObject);
+        res.render("index", hbsObject);
+    });
+
 });
 
 
