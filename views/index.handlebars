@@ -58,7 +58,16 @@
     });
 
     $(".devour-btn").on("click", function(){
-        console.log("devour button clicked, id: " + $(this).data("burgerid"));
+        var id = $(this).data("burgerid");
+
+        $.ajax({
+            url: `/${id}`,
+            type: "PUT",
+            data: id
+        }).then(function(){
+            location.reload();
+        });
+
     });
 
 

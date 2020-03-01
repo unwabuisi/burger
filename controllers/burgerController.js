@@ -16,17 +16,20 @@ router.get("/", function(req,res){
 
 
 router.post("/", function(req,res){
-    console.dir(req.body);
     burger.create(["burger_name","devoured"],[req.body.burger_name,req.body.devoured],function(){
         res.redirect("/");
     });
 });
 
 
-
-
-
-
-
+router.put("/:id", function(req,res){
+    var condition = "id = " + req.params.id;
+    burger.update({
+        devoured: 1
+    }, condition, function(){
+        res.sendStatus(200).end();
+        // res.redirect("/");
+    });
+});
 
 module.exports = router;
