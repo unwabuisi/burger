@@ -10,16 +10,19 @@ router.get("/", function(req,res){
         var hbsObject = {
             burgers: data
         };
-        console.log(hbsObject);
         res.render("index", hbsObject);
     });
-
 });
 
 
 router.post("/", function(req,res){
-
+    console.dir(req.body);
+    // burger.create([],[],function(){
+        // res.redirect("/");
+    // });
 });
+
+
 
 
 
