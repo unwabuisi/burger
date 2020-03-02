@@ -22,6 +22,9 @@ h1 {
 
 .burger-display {
     margin: 30px;
+    height:250px;
+    overflow-y: scroll;
+
 }
 
 
