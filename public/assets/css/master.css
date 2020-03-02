@@ -1,7 +1,38 @@
 body {
-    /* background-color: black; */
+    width: 99%;
+    background-color: #fc6;
 }
+
+h1 {
+  color: #f30;
+}
+
+.spacing-reset {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.list-reset {
+    padding: 0;
+    margin: 0;
+    /* list-style-type: none; */
+    border: 0;
+}
+
+.burger-display {
+    margin: 30px;
+}
+
 
 #burgerAdd {
     padding-top: 100px;
+}
+
+.burgerAdd > button {
+    margin: 15px;
+}
+
+.devour-btn {
+    margin-left: 15px;
 }

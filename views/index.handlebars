@@ -1,40 +1,48 @@
-<div class="container">
-    <h1>Burger List</h1>
-
-    <div class="row">
-
-        <div class="burger-display col-sm">
-            <ul>
+<div class="row">
+    <div class="burger-display col-sm">
+        <table class="table table-striped">
+            <tbody>
                 {{#each burgers}}
                     {{#unless this.devoured}}
-                        <li>{{this.burger_name}} <button type="button" class="devour-btn" data-burgerid={{this.id}} name="button">Devoured</button> </li>
+                        <tr>
+                            <th scope="row">
+                                {{this.burger_name}} <button type="button" class="btn btn-light devour-btn" data-burgerid={{this.id}} name="button">Devoured</button>
+                            </th>
+                        </tr>
                     {{/unless}}
                 {{/each}}
-            </ul>
-        </div>
+            </tbody>
+        </table>
+    </div>
 
-        <div class="burger-display col-sm">
-            <ol>
+    <div class="burger-display col-sm">
+        <table class="table table-striped">
+            <tbody>
                 {{#each burgers}}
                     {{#if this.devoured}}
-                        <li>{{this.burger_name}}</li>
+                        <tr>
+                            <th scope="row">{{this.burger_name}}</th>
+                        </tr>
                     {{/if}}
                 {{/each}}
-            </ol>
-        </div>
-    </div>
+            </tbody>
 
+        </table>
 
-    <div class="row">
-        <div class="form-group col-lg">
-            <form class="burgerAdd" action="" method="">
-                <label for="burgerName">Enter a burger you want to eat and click "Submit"</label><br>
-                <input type="text" name="burgerName" value=""><br>
-                <button type="submit" name="button">Submit</button>
-            </form>
-        </div>
     </div>
 </div>
+
+
+<div class="row">
+    <div class="form-group col-lg text-center">
+        <form class="burgerAdd" action="" method="">
+            <label for="burgerName">Enter a burger you want to eat and click "Submit"</label><br>
+            <input type="text" name="burgerName" value=""><br>
+            <button type="submit" class="btn btn-lg btn-primary" name="button">Submit</button>
+        </form>
+    </div>
+</div>
+
 
 
 
@@ -67,9 +75,6 @@
         }).then(function(){
             location.reload();
         });
-
     });
-
-
 </script>
 
