@@ -1,34 +1,40 @@
 var express = require("express");
-
 var router = express.Router();
-
-// Import the model (burger.js) to use its database functions
-var burger = require("../models/burgers.js");
+var db = require("../models");
 
 router.get("/", function(req,res){
-    burger.all(function(data){
+    var burerList = [];
+    db.Burger.findAll({}).then(function(result){
+        result.forEach(function(item, i) {
+            burerList.push(item.dataValues);
+        });
         var hbsObject = {
-            burgers: data
+            burgers: burerList
         };
         res.render("index", hbsObject);
     });
 });
 
-
 router.post("/", function(req,res){
-    burger.create(["burger_name","devoured"],[req.body.burger_name,req.body.devoured],function(){
-        res.redirect("/");
+    db.Burger.create({
+        burger_name: req.body.burger_name
+    }).then(function(result){
+        res.status(200).redirect("/");
     });
 });
 
-
 router.put("/:id", function(req,res){
     var condition = "id = " + req.params.id;
-    burger.update({
-        devoured: 1
-    }, condition, function(){
-        res.sendStatus(200).end();
-        // res.redirect("/");
+    db.Burger.update({
+        devoured:true
+    },
+    {
+        where: {
+            id: req.params.id
+        }
+    }
+    ).then(function(result){
+        res.status(200).end();
     });
 });
 
