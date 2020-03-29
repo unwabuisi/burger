@@ -1,12 +1,13 @@
 <div class="row">
     <div class="burger-display col-sm">
+        <h3 class="text-center">Burgers I'd Like To Try</h3>
         <table class="table table-striped">
             <tbody>
                 {{#each burgers}}
                     {{#unless this.devoured}}
                         <tr>
                             <th scope="row">
-                                {{this.burger_name}} <button type="button" class="btn btn-light devour-btn" data-burgerid={{this.id}} name="button">Devoured</button>
+                                {{this.burger_name}} <button type="button" class="btn btn-light devour-btn" data-burgerid={{this.id}} data-burgername="{{{this.burger_name}}}" name="button">Devoured</button>
                             </th>
                         </tr>
                     {{/unless}}
@@ -16,6 +17,7 @@
     </div>
 
     <div class="burger-display col-sm">
+        <h3 class="text-center">Burgers I've Tried</h3>
         <table class="table table-striped">
             <tbody>
                 {{#each burgers}}
@@ -56,8 +58,7 @@
             type: 'POST',
             data: burgerToAdd
         }).then(function(status){
-            console.log(status);
-            // location.reload();
+            location.reload();
         }).fail(function(result){
             alert(result.responseJSON.message);
             console.log("Error: "+result.responseJSON.message);
@@ -66,12 +67,16 @@
     });
 
     $(".devour-btn").on("click", function(){
-        var id = $(this).data("burgerid");
+
+        var devouredBurger = {
+            id:$(this).data("burgerid"),
+            name: $(this).data("burgername")
+        }
 
         $.ajax({
-            url: `/${id}`,
+            url: `/${devouredBurger.id}`,
             type: "PUT",
-            data: id
+            data: devouredBurger
         }).then(function(){
             location.reload();
         });
