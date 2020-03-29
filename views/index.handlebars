@@ -55,8 +55,12 @@
             url: "/",
             type: 'POST',
             data: burgerToAdd
-        }).then(function(){
-            location.reload();
+        }).then(function(status){
+            console.log(status);
+            // location.reload();
+        }).fail(function(result){
+            alert(result.responseJSON.message);
+            console.log("Error: "+result.responseJSON.message);
         });
 
     });

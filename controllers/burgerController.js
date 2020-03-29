@@ -24,7 +24,8 @@ router.post("/", function(req,res){
         res.status(200).redirect("/");
     }).catch(function(err){
         if (err.errors[0].path == "noEmpytyName") {
-            console.log(`Error: ${err.errors[0].message}`);
+            res.status(500).send(err.errors[0]);
+            // console.log(`Error: ${err.errors[0].message}`);
         }
 
     });
